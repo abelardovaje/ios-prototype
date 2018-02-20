@@ -7,7 +7,7 @@ export default function(state= initialState,action = {}){
     switch(action.type){
         case 'LOGIN':
         let newState = {...state};
-        // newState.isLogin = true;
+        newState.isLogin = true;
         return newState;
 
         default:return state;

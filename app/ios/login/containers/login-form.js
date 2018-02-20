@@ -1,5 +1,5 @@
 import React from 'react';
-import {StackNavigator} from 'react-navigation';
+import {StackNavigator, NavigationActions} from 'react-navigation';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {login} from '../action';
@@ -29,12 +29,11 @@ class LoginForm extends React.Component{
     }
 
     handleLogin(){
-        // var result = this.props.login(this.state);
-        // if(result){
-        //     this.props.navigation.navigate('home');
-        // }
-        const {navigate} = this.props.navigation;
-        navigate('home');
+        this.props.login(this.state);   
+    }
+
+    componentDidUpdate(){
+       
     }
 
     render(){
@@ -43,7 +42,7 @@ class LoginForm extends React.Component{
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                  <View style={styles.logoContainer}>
                 
-                    <Text style={styles.loginTitle}>BE-LINE</Text>
+                    <Text style={styles.loginTitle}>{this.props.user.isLogin ? 'login':'false'}</Text>
                 </View>
 
                 <View style={styles.formContainer}>
@@ -145,7 +144,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state){
     return {
-        user:state.User
+        user:state.User,
+        nav:state.Nav
     }
 }
 
