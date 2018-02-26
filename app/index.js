@@ -5,7 +5,7 @@ import IOSRoot from './ios/index';
 
 export const Root = () =>{
     return (
-        <Provider store={store}>
+        <Provider store={store}>      
             <IOSRoot />
         </Provider>
     )

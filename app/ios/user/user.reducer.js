@@ -6,10 +6,18 @@ export default function(state= initialState,action = {}){
     let newState;
     switch(action.type){
         case 'LOGIN':
-        let newState = {...state};
-        newState.isLogin = true;
+            newState = {...state};
+            newState.isLogin = true;
+            newState.user = action.payload;
         return newState;
 
         default:return state;
+
+        case 'SET_USER':
+            newState = {...state}
+            newState.isLogin = true;
+            newState.user = action.payload
+            console.log(newState.isLogin);
+        return newState; 
     }
 }

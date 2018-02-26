@@ -3,14 +3,15 @@ import {StackNavigator, NavigationActions} from 'react-navigation';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {login} from '../action';
-import { StyleSheet, Text, View ,TextInput ,KeyboardAvoidingView ,TouchableOpacity, StatusBar } from 'react-native';
+import { StyleSheet, Text, View ,TextInput ,KeyboardAvoidingView ,TouchableOpacity, StatusBar, AsyncStorage } from 'react-native';
 class LoginForm extends React.Component{
 
     constructor(props){
         super(props);
         this.state = {
             username:'',
-            password:''
+            password:'',
+            user:[]
         }
         this.handleUsernameInputChange = this.handleUsernameInputChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this)
@@ -29,7 +30,10 @@ class LoginForm extends React.Component{
     }
 
     handleLogin(){
-        this.props.login(this.state);   
+        this.props.login(this.state).then(async (res)=>{
+            console.log(res);
+            await AsyncStorage.setItem('user',JSON.stringify(res));
+        });   
     }
 
     componentDidUpdate(){
@@ -37,12 +41,12 @@ class LoginForm extends React.Component{
     }
 
     render(){
-       
+        
         return(
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                  <View style={styles.logoContainer}>
                 
-                    <Text style={styles.loginTitle}>{this.props.user.isLogin ? 'login':'false'}</Text>
+                    <Text style={styles.loginTitle}>BE-LINE</Text>
                 </View>
 
                 <View style={styles.formContainer}>
