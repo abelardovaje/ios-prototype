@@ -2,6 +2,7 @@ import React from 'react';
 import {StackNavigator} from 'react-navigation';
 import List from '../containers/list';
 import Chat from '../containers/chat';
+import ContactDetails from '../containers/contact-details';
 let config = {
     List:{
         screen:List,
@@ -17,6 +18,16 @@ let config = {
             return {
                 title:params.name.first,
                 tabBarVisible: false,
+            }
+        }
+    },
+    ContactDetails:{
+        screen:ContactDetails,
+        navigationOptions:({navigation}) =>{
+            const {params} = navigation.state;
+            return {
+                title:params.name,
+                tabBarVisible:false
             }
         }
     }
