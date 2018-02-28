@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {View, Text, FlatList, ScrollView, StyleSheet} from 'react-native';
 import {SearchBar, ListItem} from 'react-native-elements';
-import {seachContact} from '../actions';
+import {seachContact,getContacts} from '../actions';
 import axios from 'axios';
 class List extends React.Component{
     static timer = 0;
@@ -17,15 +17,8 @@ class List extends React.Component{
         this.searchContact = this.searchContact.bind(this);
     }
 
-    componentDidMount(){
-       
-        let _self = this;
-        axios.get('https://randomuser.me/api/?results=5').then((res)=>{
-            console.log('hello');
-            _self.setState({
-               users:res.data.results
-           });
-        });
+    componentWillMount(){
+        this.props.getContacts();
     }
 
     searchContact(key){
@@ -64,6 +57,7 @@ class List extends React.Component{
             <SearchBar 
                 onChangeText={(searchKey)=>this.searchContact(searchKey)}
                 placeholder="Type here.." 
+                ref={search => this.search = search}
                 inputStyle= {{backgroundColor:'white'}}
                 containerStyle={{
                     backgroundColor:'#0AC25A',
@@ -99,7 +93,7 @@ class List extends React.Component{
         return (
             <ScrollView>
                  <FlatList
-                    data={this.state.users}
+                    data={this.props.contacts}
                     keyExtractor={(item,index)=>item.email}
                     renderItem={({item})=>
                         <ListItem 
@@ -107,9 +101,9 @@ class List extends React.Component{
                         roundAvatar
                         containerStyle={{borderBottomWidth:0,backgroundColor:'white'}}
                         onPress={()=>navigate('Chat',item)}
-                        avatar={item.picture.large}
+                        // avatar={item.picture.large}
                         subtitle={item.email}
-                        title={`${item.name.first + " " + item.name.last}`}
+                        title={`${item.name}`}
                         style={styles.listItem}/>
                     }
                 />                                              
@@ -147,15 +141,16 @@ let styles= StyleSheet.create({
     }   
 })
 
-function mapStateToProps(){
+function mapStateToProps(state){
     return {
-        
+        contacts:state.Contacts
     }
 }
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
-        seachContact
+        seachContact,
+        getContacts
     },dispatch)
 }
 export default connect(mapStateToProps,mapDispatchToProps)(List);

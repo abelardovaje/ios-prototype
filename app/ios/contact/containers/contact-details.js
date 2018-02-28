@@ -8,17 +8,24 @@ import {addContact} from '../actions';
 class ContactDetails extends React.Component{
 
     add(){
-        let events = [
-            {
-                type:'add-new-contacts',
-                source:{
-                    userId:10
-                },
-                user:this.props.user
-            }
-        ]
-    
-        this.props.addContact(events);
+        const {state} = this.props.navigation;
+        let data = {
+            type:'add-new-contacts',
+            source:{
+                userId:this.props.user.id
+            },
+            user:this.props.user,
+            contact:state.params
+            
+        }
+            
+        
+        console.log(data);
+        
+        this.props.addContact(data).then(()=>{
+            alert('New contact added!');
+            this.props.navigation.goBack();
+        });
 
     }
     render(){

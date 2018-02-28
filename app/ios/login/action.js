@@ -28,7 +28,7 @@ export function getUserDataOnLocalStorage(){
             
             return JSON.parse(res);
         }).then((parseResponse)=>{
-            console.log(parseResponse);
+            // console.log(parseResponse);
             if(!_.isEmpty(parseResponse)){
                 dispatch({
                     type:'SET_USER',

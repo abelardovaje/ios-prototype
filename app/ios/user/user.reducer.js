@@ -17,7 +17,6 @@ export default function(state= initialState,action = {}){
             newState = {...state}
             newState.isLogin = true;
             newState.user = action.payload
-            console.log(newState.isLogin);
         return newState; 
     }
 }

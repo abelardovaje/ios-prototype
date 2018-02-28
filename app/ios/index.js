@@ -21,15 +21,17 @@ class IOSRoot extends React.Component{
 
     componentDidMount(){
         // AsyncStorage.removeItem('user');
-        let _self = this;
+
         this.props.getUserDataOnLocalStorage().then((res)=>{
             
-            _self.setState({
+            this.setState({
                 checkedSignIn:true
             });
-          
+           
         });
+
     }
+
     render(){
         const { navigationState, dispatch, user } = this.props;
         const state = user.isLogin
@@ -39,7 +41,7 @@ class IOSRoot extends React.Component{
         if(!this.state.checkedSignIn){
             return null;
         }
-
+       
         return <Navigator
                 navigation={
                     addNavigationHelpers({ 
