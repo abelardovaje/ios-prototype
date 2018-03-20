@@ -1,5 +1,5 @@
 {
-  "name": "beline",
+  "name": "line",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel": "^6.23.0",
     "fs": "0.0.1-security",
     "node-env-file": "^0.1.8",
     "react": "16.2.0",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "babel-jest": "22.2.2",
+    "babel-plugin-root-import": "^5.1.0",
     "babel-preset-react-native": "^4.0.0",
     "jest": "22.3.0",
     "react-native-dotenv": "^0.1.1",

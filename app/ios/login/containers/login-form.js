@@ -14,7 +14,7 @@ class LoginForm extends React.Component{
             user:[]
         }
         this.handleUsernameInputChange = this.handleUsernameInputChange.bind(this);
-        this.handleLogin = this.handleLogin.bind(this)
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
     handleUsernameInputChange(username){
@@ -34,10 +34,6 @@ class LoginForm extends React.Component{
             console.log(res);
             await AsyncStorage.setItem('user',JSON.stringify(res));
         });   
-    }
-
-    componentDidUpdate(){
-       
     }
 
     render(){

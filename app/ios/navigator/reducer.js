@@ -25,6 +25,13 @@ export default function navigationReducer(state = initialState, action){
             stateForLoggedIn: Navigator.router.getStateForAction(ActionLoggedOut, stateForLoggedOut)
         };
 
+        // case 'LOGOUT':
+
+        // return {
+        //     ...state,
+        //     stateForLoggedIn: Navigator.router.getStateForAction(ActionLoggedIn, stateForLoggedIn)
+        // }
+
         // case 'SET_USER':
     
         // return {

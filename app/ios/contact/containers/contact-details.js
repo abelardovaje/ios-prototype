@@ -5,12 +5,13 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {addContact} from '../actions';
+import {DeviceEventEmitter} from 'react-native';
 class ContactDetails extends React.Component{
 
     add(){
         const {state} = this.props.navigation;
         let data = {
-            type:'add-new-contacts',
+            type:'new-contact',
             source:{
                 userId:this.props.user.id
             },
@@ -18,16 +19,15 @@ class ContactDetails extends React.Component{
             contact:state.params
             
         }
-            
-        
-        console.log(data);
-        
+              
         this.props.addContact(data).then(()=>{
+            // this.props.navigation.goBack();
             alert('New contact added!');
-            this.props.navigation.goBack();
+            DeviceEventEmitter.emit('refresh');
         });
 
     }
+
     render(){
         return(
             <View style={styles.container}>

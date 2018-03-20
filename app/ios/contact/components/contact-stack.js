@@ -3,6 +3,8 @@ import {StackNavigator} from 'react-navigation';
 import List from '../containers/list';
 import Chat from '../containers/chat';
 import ContactDetails from '../containers/contact-details';
+import { Icon } from 'react-native-elements';
+import {View, Text, StyleSheet} from 'react-native';
 let config = {
     List:{
         screen:List,
@@ -15,9 +17,22 @@ let config = {
         screen:Chat,
         navigationOptions:({navigation})=>{
             const {params} = navigation.state;
+            
             return {
-                title:params.name.first,
+                headerTitle:params.name,
                 tabBarVisible: false,
+                headerRight:(
+                   <View style={styles.container}>
+                        <Icon name='ios-arrow-down'
+                            size={30}
+                            onPress={()=>params.handleToggleDropdown()}
+                            underlayColor='#0AC25A'
+                            type='ionicon' iconStyle={
+                            {color:'white',marginRight:10}                          
+                        } />
+                   </View>
+                )
+
             }
         }
     },
@@ -45,5 +60,12 @@ let options = {
     },
     
 }
+
+const styles = StyleSheet.create({
+    container:{
+        flexDirection:'row',
+        marginRight:5
+    }
+})
 
 export const ContactStack = StackNavigator(config,options);

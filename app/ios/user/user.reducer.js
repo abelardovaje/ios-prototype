@@ -9,14 +9,23 @@ export default function(state= initialState,action = {}){
             newState = {...state};
             newState.isLogin = true;
             newState.user = action.payload;
+            console.log('user:',newState.user);
         return newState;
 
         default:return state;
+
+        case 'LOGOUT' :
+            newState = {...state};
+            newState.isLogin = false;
+            newState.user = {};
+        return newState;
 
         case 'SET_USER':
             newState = {...state}
             newState.isLogin = true;
             newState.user = action.payload
         return newState; 
+
+        
     }
 }

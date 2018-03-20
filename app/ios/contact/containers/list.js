@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {View, Text, FlatList, ScrollView, StyleSheet} from 'react-native';
+import {View, Text, FlatList, ScrollView, StyleSheet, DeviceEventEmitter} from 'react-native';
 import {SearchBar, ListItem} from 'react-native-elements';
 import {seachContact,getContacts} from '../actions';
 import axios from 'axios';
@@ -19,6 +19,9 @@ class List extends React.Component{
 
     componentWillMount(){
         this.props.getContacts();
+        DeviceEventEmitter.addListener('refresh',()=>{
+            this.refresh();
+        })
     }
 
     searchContact(key){
@@ -80,7 +83,7 @@ class List extends React.Component{
                     roundAvatar
                     containerStyle={{borderBottomWidth:0,backgroundColor:'white'}}
                     onPress={()=>navigate('ContactDetails',item)}
-                    //  avatar={item.image}
+                     avatar={item.image}
                     subtitle={item.email}
                     title={`${item.name}`}
                     />
@@ -94,14 +97,14 @@ class List extends React.Component{
             <ScrollView>
                  <FlatList
                     data={this.props.contacts}
-                    keyExtractor={(item,index)=>item.email}
+                    keyExtractor={(item,index)=>item._id}
                     renderItem={({item})=>
                         <ListItem 
                         underlayColor='whitesmoke'
                         roundAvatar
                         containerStyle={{borderBottomWidth:0,backgroundColor:'white'}}
                         onPress={()=>navigate('Chat',item)}
-                        // avatar={item.picture.large}
+                        avatar={item.image}
                         subtitle={item.email}
                         title={`${item.name}`}
                         style={styles.listItem}/>
@@ -109,6 +112,12 @@ class List extends React.Component{
                 />                                              
             </ScrollView>
         )
+    }
+
+    refresh(){
+        if(this.search){
+            this.search.clearText();
+        }   
     }
 
     render(){

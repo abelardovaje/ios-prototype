@@ -15,7 +15,7 @@ export function addContact(data){
                 console.log(res.data.contact);
                 dispatch({
                     type:'ADD-CONTACT',
-                    payload:[res.data.contact]
+                    payload:res.data.contact
                 });
                 return true;
         });
@@ -28,8 +28,8 @@ export function getContacts(){
             console.log('contacts',res);
             if(res.data.length){
                 dispatch({
-                    type:'ADD-CONTACT',
-                    payload:res.data[0]._user
+                    type:'SET-CONTACTS',
+                    payload:res.data
                 });
             }
            

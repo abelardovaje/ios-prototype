@@ -1,20 +1,31 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
+import DropDownMenu from '../../shared/dropdown-menu';
 class Chat extends React.Component{
     
       constructor(){
           super();
           this.state = {
-              messages:[]
+              messages:[],
+              toggleDropdown:false
           }
+          this.toggleDropdown = this.toggleDropdown.bind(this);
       }
     
     componentWillMount() {
-       
+        const {navigation} = this.props;
+        navigation.setParams({
+            handleToggleDropdown:this.toggleDropdown,
+            toggleDropdown:this.state.toggleDropdown
+        })
        
     }
-    
+    toggleDropdown(){
+       this.setState({
+           toggleDropdown:!this.state.toggleDropdown
+       })
+    }
     onSend(messages = []) {
         console.log(messages);
         const {navigation} = this.props;
@@ -27,15 +38,33 @@ class Chat extends React.Component{
     }
     render(){
         return(
-            <GiftedChat
-            messages={this.state.messages}
-            onSend={messages => this.onSend(messages)}
-            user={{
-              _id: 1,
-            }}
-          />
+            <View style={styles.container}>
+                
+                {/* <GiftedChat
+                messages={this.state.messages}
+                onSend={messages => this.onSend(messages)}
+                user={{
+                _id: 1,
+                }}
+                
+                /> */}
+                
+                <DropDownMenu 
+                show={this.state.toggleDropdown}
+                toggleDropdown={this.toggleDropdown}
+                />
+               
+               
+            </View>
         )
     }
 }
 
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        // backgroundColor:'red'
+    }
+});
 export default Chat;

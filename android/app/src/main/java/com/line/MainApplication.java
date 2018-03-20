@@ -1,4 +1,4 @@
-package com.beline;
+package com.line;
 
 import android.app.Application;
 
