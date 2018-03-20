@@ -40,14 +40,14 @@ class Chat extends React.Component{
         return(
             <View style={styles.container}>
                 
-                {/* <GiftedChat
+                <GiftedChat
                 messages={this.state.messages}
                 onSend={messages => this.onSend(messages)}
                 user={{
                 _id: 1,
                 }}
                 
-                /> */}
+                />
                 
                 <DropDownMenu 
                 show={this.state.toggleDropdown}

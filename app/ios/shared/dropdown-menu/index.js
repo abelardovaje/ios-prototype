@@ -1,10 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet, Animated, Easing, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Animated, Easing,TouchableHighlight, TouchableOpacity} from 'react-native';
+import {Icon} from 'react-native-elements';
+import FontAwesome, { Icons } from 'react-native-fontawesome';
 class DropDownMenu extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            slideDown: new Animated.Value(-100),
+            slideDown: new Animated.Value(-200),
             fadeIn: new Animated.Value(0)
         }
     }
@@ -25,27 +27,27 @@ class DropDownMenu extends React.Component{
         Animated.timing(this.state.slideDown,{
             toValue:0,
             // easing: Easing.back(),
-            duration:100,
+            duration:150,
         }).start();
 
         Animated.timing(this.state.fadeIn,{
             toValue:1,
             // easing: Easing.back(),
-            duration:100,
+            duration:200,
         }).start();
     }
 
     hideMenu(){
         Animated.timing(this.state.slideDown,{
-            toValue:-100,
+            toValue:-200,
             // easing: Easing.back(),
-            duration:100,
+            duration:150,
         }).start();
 
         Animated.timing(this.state.fadeIn,{
             toValue:0,
             // easing: Easing.back(),
-            duration:100,
+            duration:200,
         }).start();
     }
 
@@ -56,7 +58,18 @@ class DropDownMenu extends React.Component{
                 <Animated.View 
                     style={[styles.menu,{...this.props.style,top:this.state.slideDown}]}       
                 >      
-                <View style={styles.section1}></View>
+                <View style={styles.section1}>
+                    <TouchableHighlight style={styles.item} underlayColor='whitesmoke' onPress={()=>alert()}>                
+                        <View style={{alignItems:'center'}}>
+                            <FontAwesome style={{fontSize:20}}>{Icons.ban}</FontAwesome>
+                            <Text>Remove</Text>
+                        </View>
+                    </TouchableHighlight>
+                    
+                </View>
+               
+
+                
             
                 <TouchableOpacity 
                     style={styles.section2} onPress={()=>this.props.toggleDropdown()}
@@ -87,10 +100,23 @@ const styles = StyleSheet.create({
     },
     section1:{
         backgroundColor:'white',
-        flex:1
+        flex:1,
+        borderWidth:1,
+        borderColor:'whitesmoke',
+        flexDirection:'row',
+        justifyContent:'flex-end',
+        padding:5
     },
     section2:{
-        flex:3
+        flex:6
+    },
+    item:{
+        width:80,
+        height:80,
+        padding:10,
+        margin:3,
+        alignItems:'center',
+        paddingTop:15
     }
 
 });
