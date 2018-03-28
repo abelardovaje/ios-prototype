@@ -5,7 +5,7 @@ export function login(data){
   
     return (dispatch) => {
        
-       return axios.post('http://localhost:3000/login',{username:data.username,password:data.password}).then((res)=>{
+       return axios.post('http://10.10.60.92:3000/login',{username:data.username,password:data.password}).then((res)=>{
            
             if(res.data){
                dispatch({
@@ -28,7 +28,7 @@ export function getUserDataOnLocalStorage(){
             
             return JSON.parse(res);
         }).then((parseResponse)=>{
-            // console.log(parseResponse);
+            console.log('getUserDataOnLocalStorage',parseResponse);
             if(!_.isEmpty(parseResponse)){
                 dispatch({
                     type:'SET_USER',

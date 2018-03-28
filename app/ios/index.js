@@ -14,31 +14,21 @@ const addListener = createReduxBoundAddListener("root");
 class IOSRoot extends React.Component{
     constructor(){
         super();
-        this.state = {
-            checkedSignIn:false
-        }
     }
 
     componentDidMount(){
         // AsyncStorage.removeItem('user');
 
-        this.props.getUserDataOnLocalStorage().then((res)=>{
-            
-            this.setState({
-                checkedSignIn:true
-            });
-           
-        });
-
     }
 
     render(){
         const { navigationState, dispatch, user } = this.props;
+        console.log('USER:',user.checkedSignIn);
         const state = user.isLogin
         ? navigationState.stateForLoggedIn
         : navigationState.stateForLoggedOut;
         
-        if(!this.state.checkedSignIn){
+        if(!user.checkedSignIn){
             return null;
         }
        

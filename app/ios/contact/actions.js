@@ -6,6 +6,7 @@ export function seachContact(data){
         return axios.get(APP_HOST+'/search-contacts',{params:{key:data}}).then((res)=>{
             return res.data;
         });
+
     }
 }
 
@@ -22,18 +23,51 @@ export function addContact(data){
     }
 }
 
+export function deleteContact(contact,user){
+    console.log(user);
+    return (dispatch) =>{
+        axios.post(APP_HOST+'/delete-contact',{cid:contact.id,uid:user.id}).then(()=>{
+            alert('Contact deleted');
+            dispatch({
+                type:'DELETE_CONTACTS',
+                payload:contact
+            })
+        }).catch(()=>{
+            alert('Failed to delete contact');
+        });;
+       
+    }
+}
+
 export function getContacts(){
     return (dispatch)=>{
         axios.get(APP_HOST+'/get-contacts').then((res)=>{
-            console.log('contacts',res);
+            
+            for(var x in res.data){
+                res.data[x].messages = []
+            }
+            console.log('CONTACTS:',res.data);
             if(res.data.length){
                 dispatch({
                     type:'SET-CONTACTS',
                     payload:res.data
                 });
-            }
-           
+            }        
         });
     }
    
+}
+
+export function addNewMessage(data){
+    return {
+        type:'ADD_NEW_MESSAGE',
+        payload:data
+    }
+}
+
+export function sendNewMessage(message){
+    return {
+        type:'SERVER/NEW_MESSAGE',
+        payload:message
+    }
 }

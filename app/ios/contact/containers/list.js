@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {View, Text, FlatList, ScrollView, StyleSheet, DeviceEventEmitter} from 'react-native';
 import {SearchBar, ListItem} from 'react-native-elements';
 import {seachContact,getContacts} from '../actions';
+import Socket from '../../../middlewares/socket';
 import axios from 'axios';
 class List extends React.Component{
     static timer = 0;
@@ -21,7 +22,9 @@ class List extends React.Component{
         this.props.getContacts();
         DeviceEventEmitter.addListener('refresh',()=>{
             this.refresh();
-        })
+        });
+
+        //load all socket listeners
     }
 
     searchContact(key){

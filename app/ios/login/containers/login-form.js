@@ -32,7 +32,7 @@ class LoginForm extends React.Component{
     handleLogin(){
         this.props.login(this.state).then(async (res)=>{
             console.log(res);
-            await AsyncStorage.setItem('user',JSON.stringify(res));
+            await AsyncStorage.setItem('user',(res) ? JSON.stringify(res):null);
         });   
     }
 

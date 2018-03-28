@@ -1,6 +1,7 @@
 const initialState = {
     isLogin:false,
-    user:{}
+    user:{},
+    checkedSignIn:false
 }
 export default function(state= initialState,action = {}){
     let newState;
@@ -23,9 +24,14 @@ export default function(state= initialState,action = {}){
         case 'SET_USER':
             newState = {...state}
             newState.isLogin = true;
+            newState.checkedSignIn = true;
             newState.user = action.payload
         return newState; 
 
-        
+        case 'SET_CHECKSIGNIN':
+            newState = {...state}
+            newState.checkedSignIn = true;
+        return newState;
+
     }
 }
