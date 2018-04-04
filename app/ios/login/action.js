@@ -29,7 +29,7 @@ export function getUserDataOnLocalStorage(){
             return JSON.parse(res);
         }).then((parseResponse)=>{
             console.log('getUserDataOnLocalStorage',parseResponse);
-            if(!_.isEmpty(parseResponse)){
+            if(!_.isEmpsudoty(parseResponse)){
                 dispatch({
                     type:'SET_USER',
                     payload:parseResponse

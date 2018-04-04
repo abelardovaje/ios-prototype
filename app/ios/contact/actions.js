@@ -24,9 +24,10 @@ export function addContact(data){
 }
 
 export function deleteContact(contact,user){
-    console.log(user);
+    console.log('user:',user);
+    console.log('contact:',contact);
     return (dispatch) =>{
-        axios.post(APP_HOST+'/delete-contact',{cid:contact.id,uid:user.id}).then(()=>{
+        axios.post(APP_HOST+'/delete-contact',{contact:contact,user:user}).then(()=>{
             alert('Contact deleted');
             dispatch({
                 type:'DELETE_CONTACTS',

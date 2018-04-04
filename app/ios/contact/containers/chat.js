@@ -21,8 +21,7 @@ class Chat extends React.Component{
     
     componentDidMount() {
         const {navigation} = this.props;
-        console.log('PROPS:',this.props);
-       
+            
         navigation.setParams({
             handleToggleDropdown:this.toggleDropdown,
             toggleDropdown:this.state.toggleDropdown
@@ -78,9 +77,7 @@ class Chat extends React.Component{
                     showAvatarForEveryMessage={false}
                     renderAvatarOnTop={true}
                     user={{
-                    _id: this.props.user._id,
-                    avatar: 'https://www.sparklabs.com/forum/styles/comboot/theme/images/default_avatar.jpg',
-                    
+                        _id: this.props.user._id,                 
                     }}               
                 />
                    
