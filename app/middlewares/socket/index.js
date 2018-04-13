@@ -13,7 +13,7 @@ class CreateSocketMiddleware {
                         type:'SET_USER',
                         payload:parseResponse
                     });
-                    this.socket.emit('start',parseResponse);
+                    // this.socket.emit('start',parseResponse);
                 }
                 
                 store.dispatch({

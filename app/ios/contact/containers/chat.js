@@ -56,19 +56,27 @@ class Chat extends React.Component{
         this.props.sendNewMessage(data);      
         this.props.addNewMessage(data);
     }
+
+    deleteContact=() =>{
+        const {state} = this.props.navigation;
+        this.props.deleteContact(state.params,this.props.user).then(()=>{
+            this.props.navigation.goBack();
+        });
+    }
     render(){
         const {state} = this.props.navigation;
+        
         return(
             <View style={styles.container}>
                  <DropDownMenu 
                     show={this.state.toggleDropdown}
                     toggleDropdown={this.toggleDropdown}
-                    deleteContact={this.props.deleteContact}
+                    deleteContact={this.deleteContact}
                     contact={state.params}
                     user = {this.props.user}
                 />
                 <GiftedChat
-                    messages={this.props.contacts[this.state.contactIndex].messages}
+                    messages={(this.props.contacts[this.state.contactIndex])? this.props.contacts[this.state.contactIndex].messages : null}
                     onSend={messages => this.onSend(messages)}
                     renderAvatar = {()=>{
                         return null;

@@ -21,7 +21,7 @@ class ContactDetails extends React.Component{
         }
               
         this.props.addContact(data).then(()=>{
-            // this.props.navigation.goBack();
+            this.props.navigation.goBack();
             alert('New contact added!');
             DeviceEventEmitter.emit('refresh');
         });

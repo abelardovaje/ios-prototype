@@ -34,7 +34,7 @@ export default function(state=[],action= {}){
                     newState[x].messages = GiftedChat.append(newState[x].messages,data.messages);
                 }
             }
-        return newState;
+        return newState
 
         case 'RECEIVE_NEW_MESSAGE':
             var data = action.payload;
@@ -44,6 +44,12 @@ export default function(state=[],action= {}){
                     newState[x].messages = GiftedChat.append(newState[x].messages,data.messages);
                 }
             }
+        return newState;
+
+        case 'NEW_CONTACT':
+            var data = action.payload;
+            newState = [...state];
+            newState.push(data.user);   
         return newState;
         
         default : return state;

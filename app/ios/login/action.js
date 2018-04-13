@@ -1,11 +1,11 @@
 import axios from 'axios';
 import {AsyncStorage} from 'react-native';
+import {NODE_HOST, NODE_PORT, APP_HOST} from 'react-native-dotenv';
 import _ from 'lodash';
 export function login(data){
   
     return (dispatch) => {
-       
-       return axios.post('http://10.10.60.92:3000/login',{username:data.username,password:data.password}).then((res)=>{
+       return axios.post(APP_HOST+'/login',{username:data.username,password:data.password}).then((res)=>{
            
             if(res.data){
                dispatch({

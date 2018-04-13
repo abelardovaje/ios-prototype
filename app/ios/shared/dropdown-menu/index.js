@@ -73,7 +73,7 @@ class DropDownMenu extends React.Component{
                     style={[styles.menu,{...this.props.style,top:this.state.slideDown}]}       
                 >      
                 <View style={styles.section1}>
-                    <TouchableHighlight style={styles.item} underlayColor='whitesmoke' onPress={()=>this.props.deleteContact(this.props.contact,this.props.user)}>                
+                    <TouchableHighlight style={styles.item} underlayColor='whitesmoke' onPress={()=>this.props.deleteContact()}>                
                         <View style={{alignItems:'center'}}>
                             <FontAwesome style={{fontSize:20,marginBottom:3}}>{Icons.ban}</FontAwesome>
                             <Text>Remove</Text>

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {View, Text, FlatList, ScrollView, StyleSheet, DeviceEventEmitter} from 'react-native';
 import {SearchBar, ListItem} from 'react-native-elements';
-import {seachContact,getContacts} from '../actions';
+import {seachContact,getContacts, startSocket} from '../actions';
 import Socket from '../../../middlewares/socket';
 import axios from 'axios';
 class List extends React.Component{
@@ -19,7 +19,10 @@ class List extends React.Component{
     }
 
     componentWillMount(){
-        this.props.getContacts();
+        console.log('user:',this.props.user);
+        let user = this.props.user.user;
+        this.props.getContacts(user);
+        this.props.startSocket(user);
         DeviceEventEmitter.addListener('refresh',()=>{
             this.refresh();
         });
@@ -155,14 +158,16 @@ let styles= StyleSheet.create({
 
 function mapStateToProps(state){
     return {
-        contacts:state.Contacts
+        contacts:state.Contacts,
+        user:state.User
     }
 }
 
 function mapDispatchToProps(dispatch){
     return bindActionCreators({
         seachContact,
-        getContacts
+        getContacts,
+        startSocket
     },dispatch)
 }
 export default connect(mapStateToProps,mapDispatchToProps)(List);
