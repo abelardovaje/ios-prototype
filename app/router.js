@@ -21,6 +21,7 @@ let config = {
 }
 
 let options = {
+    tabBarPosition :'bottom',
     tabBarOptions:{
         showLabel:false    
     },

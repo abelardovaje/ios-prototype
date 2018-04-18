@@ -5,7 +5,6 @@ class CreateSocketMiddleware {
         this.socket = socket;
         return store =>{
             AsyncStorage.getItem('user').then((res)=>{         
-               
                 return JSON.parse(res);
             }).then((parseResponse)=>{
                 if(!_.isEmpty(parseResponse)){
@@ -13,6 +12,7 @@ class CreateSocketMiddleware {
                         type:'SET_USER',
                         payload:parseResponse
                     });
+                    // console.log(parseResponse);
                     // this.socket.emit('start',parseResponse);
                 }
                 
