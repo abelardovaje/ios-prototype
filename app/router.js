@@ -1,7 +1,10 @@
 import React from 'react';
 import {TabNavigator} from 'react-navigation';
-import {ContactStack} from './ios/contact/components/contact-stack';
-import {SettingStack} from './ios/setting/components/setting-stack';
+// import {ContactStack} from './ios/contact/components/contact-stack';
+// import {SettingStack} from './ios/setting/components/setting-stack';
+
+import {ContactStack} from './android/contact/components/contact-stack';
+import {SettingStack} from './android/setting/components/setting-stack';
 import { Icon } from 'react-native-elements';
 let config = {
     Contact:{

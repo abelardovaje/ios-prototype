@@ -5,7 +5,7 @@ import Chat from '../containers/chat';
 import ContactDetails from '../containers/contact-details';
 import { Icon } from 'react-native-elements';
 import {View, Text, StyleSheet} from 'react-native';
-
+import Test from '../containers/test';
 let config = {
     List:{
         screen:List,
