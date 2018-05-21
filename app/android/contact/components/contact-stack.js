@@ -12,6 +12,12 @@ let config = {
         navigationOptions:{
             headerTitle:'BELINE',
             headerBackTitle:'back',
+            headerTitleStyle:{               
+                textAlign: 'center',
+                flex:1,
+                alignItems:'center',
+                justifyContent:'center'
+            }
         }
     },
     Chat:{
@@ -51,6 +57,7 @@ let config = {
 let options = {
     showLabel:false,
     initialRouteName:'List',
+    mode: 'card',
     navigationOptions:{
         headerStyle:{
             backgroundColor:'#0AC25A', 

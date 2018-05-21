@@ -1,5 +1,5 @@
 import React from 'react';
-import {TabNavigator} from 'react-navigation';
+import {TabNavigator, TabBarBottom} from 'react-navigation';
 // import {ContactStack} from './ios/contact/components/contact-stack';
 // import {SettingStack} from './ios/setting/components/setting-stack';
 
@@ -11,7 +11,7 @@ let config = {
         screen:ContactStack,
         navigationOptions:{
             tabBarLabel:'Contact',
-            tabBarIcon:({tintColor})=><Icon name="ios-home-outline" type="ionicon"  color={tintColor} />
+            tabBarIcon:({tintColor})=><Icon name="ios-home" type="ionicon"  color={tintColor} />
         } 
     },
     Setting:{
@@ -25,8 +25,14 @@ let config = {
 
 let options = {
     tabBarPosition :'bottom',
+    tabBarComponent: TabBarBottom,
     tabBarOptions:{
-        showLabel:false    
+        showLabel:true,
+        inactiveTintColor :'gray',
+        activeTintColor :'#0AC25A',
+        style: {
+            backgroundColor: 'whitesmoke',
+        }    
     },
    
 }
